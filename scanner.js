@@ -16,8 +16,13 @@ const optionDefaults = [
     },
     {
         name: 'target',
-        alias: 't',
+        alias: 'h',
         type: String
+    },
+    {
+        name: 'timeout',
+        alias: 't',
+        type: Number
     }
 ];
 
@@ -26,7 +31,7 @@ const options = commandLineArgs(optionDefaults);
 const host = options['target'];
 let startPort = options['startPort'];
 const endPort = options['endPort'];
-const timeout = options['timeout'];
+const timeout = options['timeout'] || 2000;
 
 const scannerOptions = {
     host,
