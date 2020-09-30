@@ -8,10 +8,19 @@ module.exports = (port, options) => {
 
     s.setTimeout(options['timeout'], () => s.destroy());
     s.connect(port, options['host'], () => {
-        // console.log(`[${portDictionary[port]}] ${port} Open`)
+        const name = Array.isArray(portDictionary[port]) ? portDictionary[port].reduce((prev, curr, i) => `${prev} | ${curr['description']}`, '') : portDictionary[port]['description'] ;
+       
+        console.log(`PORT: ${port}`)
+        console.log(`DESCRIPTION: [${name}]`)
+        console.log('==================================');
     });
     s.on('data', (data) => {
-        // console.log(`[${portDictionary[port]}] ${port} Data: ${data}`);
+        const name = Array.isArray(portDictionary[port]) ? portDictionary[port].reduce((prev, curr, i) => `${prev} | ${curr['description']}`, '') : portDictionary[port]['description'] ;
+        
+        console.log(`PORT: ${port}`)
+        console.log(`DESCRIPTION: [${name}]`)
+        console.log(`DATA: [${data}]`)
+        console.log('==================================');
         s.destroy();
     });
     s.on('error', (error) => {

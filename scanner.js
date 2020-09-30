@@ -43,12 +43,13 @@ const scannerOptions = {
 // sockets should timeout asap to ensure no resources are wasted
 // but too low a timeout value increases the likelyhood of missing open sockets, so be careful
 
+// console.clear();
+// console.log(`Scanning........`)
 
 while (startPort <= endPort)  {
     const port = startPort;
     
     dns.lookup(host, (err, hostIp) => {
-        console.log(`Scanning ${host}:${hostIp}`)
         scanPort(port, scannerOptions);
     })
 
