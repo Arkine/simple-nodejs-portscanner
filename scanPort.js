@@ -5,11 +5,13 @@ const chalk = require('chalk');
 module.exports = (port, options) => {
     const s = new net.Socket();
 
-    const formatName = portObj => Array.isArray(portObj) ? portObj.map(i => i['description']).join(' | ') : portObj['description'] ;
+    const formatName = portObj => Array.isArray(portObj) ? portObj.map(i => i['description']).join(' | ') : portObj['description'];
     
     const log = (port, portObj, data = null) => {
         console.log(`${chalk.green('PORT:')} ${port}`)
-        console.log(`${chalk.green('DESCRIPTION:')} ${formatName(portObj)}`)
+        const name = portObj ? formatName(portObj) : 'UNKNOWN';
+        
+        console.log(`${chalk.green('DESCRIPTION:')} ${name}`)
         if (data) console.log(`${chalk.green('DATA:')} ${data}`)
         console.log('==================================');
     }
